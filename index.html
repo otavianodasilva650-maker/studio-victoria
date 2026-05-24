@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Victoria — Design de Sobrancelhas</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <span class="nav-logo">Studio Victoria</span>
+  <div class="nav-links" id="navLinks">
+    <a href="#home" onclick="closeMenu()">Início</a>
+    <a href="#services" onclick="closeMenu()">Serviços</a>
+    <a href="#horarios" onclick="closeMenu()">Horários</a>
+    <a href="#agendamento" onclick="closeMenu()">Agendar</a>
+    <a href="#contato" onclick="closeMenu()">Contato</a>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg-shape s1"></div>
+  <div class="hero-bg-shape s2"></div>
+  <div class="hero-bg-shape s3"></div>
+  <div class="hero-rings">
+    <div class="hero-ring r1"></div>
+    <div class="hero-ring r2"></div>
+    <div class="hero-ring r3"></div>
+    <div class="hero-ring r4"></div>
+  </div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">✦ Arte &amp; Precisão ✦</span>
+    <h1 class="hero-title">
+      Studio<br>
+      <em>Victoria</em>
+    </h1>
+    <p class="hero-sub2">Design de Sobrancelhas</p>
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <span class="hero-divider-gem">◆</span>
+      <div class="hero-divider-line"></div>
+    </div>
+    <p class="hero-desc">Realçamos sua beleza natural com técnicas exclusivas e atendimento personalizado, porque cada olhar merece ser único.</p>
+    <button class="hero-cta" onclick="document.getElementById('agendamento').scrollIntoView({behavior:'smooth'})"><span>✦ Agendar Horário</span></button>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span class="hero-scroll-text">Rolar</span>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="services">
+  <div class="section-header">
+    <span class="section-eyebrow reveal">✦ Nossos Serviços ✦</span>
+    <h2 class="section-title reveal reveal-delay-1">Arte para o seu <em>Olhar</em></h2>
+    <div class="section-ornament reveal reveal-delay-2">
+      <div class="section-ornament-line"></div>
+      <span class="section-ornament-gem">◆</span>
+      <div class="section-ornament-line"></div>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon-wrap"><span class="service-icon">✧</span></div>
+      <h3 class="service-name">Design Simples</h3>
+      <p class="service-desc">Modelagem precisa para sobrancelhas perfeitas, realçando sua beleza natural com técnica refinada e cuidado exclusivo.</p>
+      <div class="service-price"><sup>R$</sup> 15</div>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon-wrap"><span class="service-icon">◈</span></div>
+      <h3 class="service-name">Design com Henna</h3>
+      <p class="service-desc">Design completo com coloração de henna para sobrancelhas mais encorpadas, definidas e com duração prolongada.</p>
+      <div class="service-price"><sup>R$</sup> 25</div>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-icon-wrap"><span class="service-icon">◇</span></div>
+      <h3 class="service-name">Limpeza de Buço</h3>
+      <p class="service-desc">Remoção suave e precisa dos pelos do buço, proporcionando pele mais lisa e aparência impecável e radiante.</p>
+      <div class="service-price"><sup>R$</sup> 8</div>
+    </div>
+  </div>
+</section>
+
+<!-- HORÁRIOS -->
+<section id="horarios">
+  <div class="section-header">
+    <span class="section-eyebrow reveal">✦ Funcionamento ✦</span>
+    <h2 class="section-title reveal reveal-delay-1">Nossos <em>Horários</em></h2>
+    <div class="section-ornament reveal reveal-delay-2">
+      <div class="section-ornament-line"></div>
+      <span class="section-ornament-gem">◆</span>
+      <div class="section-ornament-line"></div>
+    </div>
+  </div>
+  <div class="hours-container">
+    <div class="hours-box reveal reveal-delay-1">
+      <p class="hours-days">Terça-feira a Sábado</p>
+      <div class="hours-times">
+        <div class="hours-period">
+          <span class="hours-label">Manhã</span>
+          <span class="hours-time">08:00 – 11:30</span>
+        </div>
+        <div class="hours-divider">|</div>
+        <div class="hours-period">
+          <span class="hours-label">Tarde</span>
+          <span class="hours-time">14:00 – 17:30</span>
+        </div>
+      </div>
+    </div>
+    <div class="hours-box reveal reveal-delay-2">
+      <p class="hours-days">Domingo</p>
+      <div class="hours-times">
+        <div class="hours-period">
+          <span class="hours-label">Manhã</span>
+          <span class="hours-time">08:00 – 11:30</span>
+        </div>
+      </div>
+    </div>
+    <p class="hours-note reveal">Fechado às segundas-feiras</p>
+  </div>
+</section>
+
+<!-- AGENDAMENTO -->
+<section id="agendamento">
+  <div class="section-header">
+    <span class="section-eyebrow reveal">✦ Agendamento ✦</span>
+    <h2 class="section-title reveal reveal-delay-1">Reserve seu <em>Horário</em></h2>
+    <div class="section-ornament reveal reveal-delay-2">
+      <div class="section-ornament-line"></div>
+      <span class="section-ornament-gem">◆</span>
+      <div class="section-ornament-line"></div>
+    </div>
+  </div>
+  <div class="booking-container">
+    <div class="booking-step reveal">
+      <div class="step-label"><div class="step-num">1</div> Seus Dados</div>
+      <div class="booking-row">
+        <input class="booking-input" type="text" id="clientName" placeholder="Seu nome completo">
+        <input class="booking-input" type="tel" id="clientPhone" placeholder="(00) 0 0000-0000" oninput="maskPhone(this)">
+      </div>
+    </div>
+    <div class="booking-step reveal reveal-delay-1">
+      <div class="step-label"><div class="step-num">2</div> Serviço</div>
+      <select class="booking-select" id="clientService">
+        <option value="">Selecione o serviço...</option>
+        <option value="Design Simples|15">Design Simples — R$ 15</option>
+        <option value="Design com Henna|25">Design com Henna — R$ 25</option>
+        <option value="Limpeza de Buço|8">Limpeza de Buço — R$ 8</option>
+      </select>
+    </div>
+    <div class="booking-step reveal reveal-delay-2">
+      <div class="step-label"><div class="step-num">3</div> Data</div>
+      <input class="booking-input" type="date" id="clientDate" onchange="loadTimes()">
+    </div>
+    <div class="booking-step" id="timesStep" style="display:none;">
+      <div class="step-label"><div class="step-num">4</div> Horário Disponível</div>
+      <div class="times-grid" id="timesGrid"></div>
+    </div>
+    <button class="btn-primary reveal" onclick="submitBooking()">✦ Confirmar Agendamento</button>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-header">
+    <span class="section-eyebrow reveal">✦ Fale Conosco ✦</span>
+    <h2 class="section-title reveal reveal-delay-1">Entre em <em>Contato</em></h2>
+    <div class="section-ornament reveal reveal-delay-2">
+      <div class="section-ornament-line"></div>
+      <span class="section-ornament-gem">◆</span>
+      <div class="section-ornament-line"></div>
+    </div>
+  </div>
+  <div class="social-grid">
+    <a class="social-btn reveal reveal-delay-1" href="https://wa.me/5582999447787" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+    <a class="social-btn reveal reveal-delay-2" href="https://instagram.com/studiovictoriavs" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      <span>@studiovictoriavs</span>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Studio Victoria</span>
+  <p class="footer-tagline">Design de Sobrancelhas</p>
+  <p class="footer-copy">© 2025 Studio Victoria · Todos os direitos reservados</p>
+  <button class="footer-admin-link" onclick="showLogin()">Área Admin</button>
+</footer>
+
+<!-- MODAL CONFIRMAÇÃO -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="modal-box">
+    <span class="modal-icon">✦</span>
+    <h2 class="modal-title">Agendado!</h2>
+    <p class="modal-text" id="confirmText"></p>
+    <button class="modal-close" onclick="closeModal()">Perfeito, obrigada!</button>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="login-section">
+  <div class="login-box">
+    <h2 class="login-title">Área Admin</h2>
+    <p class="login-sub">Studio Victoria · Acesso Exclusivo</p>
+    <div class="login-error" id="loginError">E-mail ou senha incorretos.</div>
+    <div class="login-field">
+      <label class="login-label" for="adminEmail">E-mail</label>
+      <input class="login-input" type="email" id="adminEmail" placeholder="seu@email.com">
+    </div>
+    <div class="login-field">
+      <label class="login-label" for="adminPass">Senha</label>
+      <input class="login-input" type="password" id="adminPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="login-btn" onclick="doLogin()">Entrar</button>
+    <button class="login-close" onclick="hideLogin()">← Voltar ao site</button>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="admin-section">
+  <div class="admin-wrap">
+    <div class="admin-header">
+      <h1 class="admin-title">✦ Painel Administrativo</h1>
+      <button class="admin-logout" onclick="doLogout()">Sair</button>
+    </div>
+    <div class="admin-stats" id="adminStats"></div>
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Nome</th><th>Telefone</th><th>Data</th>
+            <th>Horário</th><th>Serviço</th><th>Valor</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="adminTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+ const SUPABASE_URL = "https://twybhsctxfnajxwznxyh.supabase.co";
+ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR3eWJoc2N0eGZuYWp4d3pueHloIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk0OTI4MzUsImV4cCI6MjA5NTA2ODgzNX0.EFWBopO9ZqIdGztEc4iszv9vQiF7Dw7N4d78UevV_NQ";
+
+ const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+/* ── PARTICLES ── */
+(function(){
+  var canvas = document.getElementById('particles');
+  var ctx = canvas.getContext('2d');
+  var W, H, particles = [];
+  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  var colors = ['rgba(74,25,66,0.35)','rgba(184,125,181,0.3)','rgba(201,149,106,0.25)','rgba(123,52,120,0.2)'];
+  for(var i=0;i<55;i++){
+    particles.push({
+      x:Math.random()*window.innerWidth,
+      y:Math.random()*window.innerHeight,
+      r:Math.random()*2.5+0.5,
+      vx:(Math.random()-0.5)*0.4,
+      vy:(Math.random()-0.5)*0.4,
+      c:colors[Math.floor(Math.random()*colors.length)],
+      twinkle:Math.random()*Math.PI*2,
+      twinkleSpeed:Math.random()*0.03+0.01
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(function(p){
+      p.twinkle += p.twinkleSpeed;
+      var alpha = 0.4+Math.sin(p.twinkle)*0.6;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = p.c.replace(/[\d.]+\)$/,alpha+')');
+      ctx.fill();
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=W; if(p.x>W)p.x=0;
+      if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ── CURSOR GLOW ── */
+document.addEventListener('mousemove',function(e){
+  var g = document.getElementById('cursorGlow');
+  g.style.left = e.clientX+'px';
+  g.style.top = e.clientY+'px';
+});
+
+/* ── NAVBAR SCROLL ── */
+window.addEventListener('scroll',function(){
+  var nav = document.getElementById('navbar');
+  if(window.scrollY>60) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+/* ── REVEAL ON SCROLL ── */
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  },{threshold:0.12});
+  els.forEach(function(el){ io.observe(el); });
+})();
+
+/* ── MENU ── */
+function toggleMenu(){
+  document.getElementById('navLinks').classList.toggle('open');
+  document.getElementById('hamburger').classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('navLinks').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+/* ── DATA MÍNIMA ── */
+(function(){
+  var inp = document.getElementById('clientDate');
+  var now = new Date();
+  var pad = function(n){ return String(n).padStart(2,'0'); };
+  inp.min = now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
+})();
+
+/* ── SLOTS ── */
+var SLOTS_WEEKDAY = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30'];
+var SLOTS_SUNDAY  = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30'];
+
+function todayStr(){ var n=new Date(),p=function(x){return String(x).padStart(2,'0');}; return n.getFullYear()+'-'+p(n.getMonth()+1)+'-'+p(n.getDate()); }
+
+async function loadTimes() {
+  var dateVal = document.getElementById('clientDate').value;
+  if (!dateVal) return;
+
+  var step = document.getElementById('timesStep');
+  step.style.display = 'block';
+
+  var parts = dateVal.split('-').map(Number);
+  var chosen = new Date(parts[0], parts[1] - 1, parts[2]);
+
+  var grid = document.getElementById('timesGrid');
+
+  if (chosen.getDay() === 1) {
+    grid.innerHTML = '<div class="times-empty">Studio fechado às segundas-feiras.</div>';
+    return;
+  }
+
+  const { data, error } = await sb
+    .from('agendamentos')
+    .select('horario')
+    .eq('data_agendamento', dateVal);
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  // CORREÇÃO: pega apenas HH:MM para compatibilidade com formato time do PostgreSQL (HH:MM:SS)
+  var booked = data.map(b => b.horario.substring(0, 5));
+
+  var now = new Date();
+  var isToday = chosen.toDateString() === now.toDateString();
+  var curMin = now.getHours() * 60 + now.getMinutes();
+
+  var slots = chosen.getDay() === 0 ? SLOTS_SUNDAY : SLOTS_WEEKDAY;
+
+  grid.innerHTML = '';
+
+  slots.forEach(function(slot) {
+    var sp = slot.split(':');
+    var slotMin = parseInt(sp[0]) * 60 + parseInt(sp[1]);
+
+    var btn = document.createElement('button');
+    btn.className = 'time-btn';
+    btn.textContent = slot;
+    btn.dataset.time = slot;
+
+    if (booked.includes(slot)) {
+      btn.classList.add('blocked');
+    } else if (isToday && slotMin <= curMin) {
+      btn.classList.add('past');
+    } else {
+      btn.onclick = function() {
+        document.querySelectorAll('.time-btn').forEach(function(b) {
+          b.classList.remove('selected');
+        });
+        btn.classList.add('selected');
+      };
+    }
+
+    grid.appendChild(btn);
+  });
+}
+
+async function submitBooking(){
+  var name=document.getElementById('clientName').value.trim();
+  var phone=document.getElementById('clientPhone').value.trim();
+  var service=document.getElementById('clientService').value;
+  var date=document.getElementById('clientDate').value;
+  var timeSel=document.querySelector('.time-btn.selected');
+  if(!name){ alert('Por favor, informe seu nome.'); return; }
+  if(!phone){ alert('Por favor, informe seu telefone.'); return; }
+  if(!service){ alert('Por favor, selecione o serviço.'); return; }
+  if(!date){ alert('Por favor, selecione a data.'); return; }
+  if(!timeSel){ alert('Por favor, selecione um horário.'); return; }
+  var p=service.split('|'), svcName=p[0], price=Number(p[1]);
+  const { error } = await sb
+    .from('agendamentos')
+    .insert([{
+      nome: name,
+      telefone: phone,
+      servico: svcName,
+      preco: price,
+      data_agendamento: date,
+      horario: timeSel.dataset.time
+    }]);
+
+  if(error){
+    console.log(error);
+    alert("Esse horário já foi reservado. Escolha outro horário.");
+    return;
+  }
+  await loadTimes();
+
+  timeSel.classList.remove('selected'); timeSel.classList.add('blocked'); timeSel.onclick=null;
+  var dp=date.split('-');
+  document.getElementById('confirmText').innerHTML=
+    'Olá, <strong>'+name+'</strong>!<br><br>'+
+    'Seu agendamento foi confirmado para<br>'+
+    '<strong>'+dp[2]+'/'+dp[1]+'/'+dp[0]+'</strong> às <strong>'+timeSel.dataset.time+'</strong>.<br><br>'+
+    'Serviço: <strong>'+svcName+'</strong><br><br>'+
+    'Aguardamos você no Studio Victoria! ✦';
+  document.getElementById('confirmModal').classList.add('active');
+}
+
+function closeModal(){
+  document.getElementById('confirmModal').classList.remove('active');
+  document.getElementById('clientName').value='';
+  document.getElementById('clientPhone').value='';
+  document.getElementById('clientService').value='';
+  document.getElementById('clientDate').value='';
+  document.getElementById('timesStep').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showLogin(){
+  document.getElementById('loginError').style.display='none';
+  document.getElementById('adminEmail').value='';
+  document.getElementById('adminPass').value='';
+  document.getElementById('login-section').classList.add('active');
+}
+function hideLogin(){ document.getElementById('login-section').classList.remove('active'); }
+
+async function doLogin() {
+  const email = document.getElementById('adminEmail').value.trim();
+  const password = document.getElementById('adminPass').value;
+  document.getElementById('loginError').style.display = 'none';
+  const { data, error } = await sb.auth.signInWithPassword({ email, password });
+  if (error) {
+    document.getElementById('loginError').style.display = 'block';
+    console.error(error);
+    return;
+  }
+  hideLogin();
+  openAdmin();
+}
+
+async function doLogout() {
+  await sb.auth.signOut();
+  document.getElementById('admin-section').classList.remove('active');
+}
+
+async function openAdmin(){
+  const { data: { user } } = await sb.auth.getUser();
+  if(!user){ alert("Faça login primeiro."); return; }
+  document.getElementById('admin-section').classList.add('active');
+  renderAdmin();
+}
+
+async function renderAdmin(){
+  const { data: bookings, error } = await sb
+    .from('agendamentos')
+    .select('*')
+    .order('data_agendamento', { ascending: true });
+
+  if(error){ console.error(error); alert("Erro ao carregar agendamentos"); return; }
+
+  var total = bookings.reduce(function(s,b){ return s + Number(b.preco); }, 0);
+  var hoje = bookings.filter(function(b){ return b.data_agendamento === todayStr(); }).length;
+
+  document.getElementById('adminStats').innerHTML =
+    '<div class="stat-card"><span class="stat-label">Agendamentos</span><span class="stat-value">'+bookings.length+'</span></div>'+
+    '<div class="stat-card"><span class="stat-label">Receita Total</span><span class="stat-value">R$ '+total+'</span></div>'+
+    '<div class="stat-card"><span class="stat-label">Hoje</span><span class="stat-value">'+hoje+'</span></div>';
+
+  var tbody = document.getElementById('adminTableBody');
+  if(bookings.length===0){
+    tbody.innerHTML = '<tr><td colspan="7"><div class="empty-state">Nenhum agendamento ainda.</div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = bookings.map(function(b){
+    var dp = b.data_agendamento.split('-');
+    return '<tr>'+
+      '<td data-label="Nome"><strong>'+b.nome+'</strong></td>'+
+      '<td data-label="Telefone">'+b.telefone+'</td>'+
+      '<td data-label="Data">'+dp[2]+'/'+dp[1]+'/'+dp[0]+'</td>'+
+      '<td data-label="Horário">'+b.horario.substring(0,5)+'</td>'+
+      '<td data-label="Serviço">'+b.servico+'</td>'+
+      '<td data-label="Valor" class="td-price">R$ '+b.preco+'</td>'+
+      '<td><button class="btn-delete" onclick="deleteBooking('+b.id+')">✕ Excluir</button></td>'+
+      '</tr>';
+  }).join('');
+}
+
+async function deleteBooking(id){
+  if(!confirm('Deseja excluir este agendamento? O horário voltará a ficar disponível.')){ return; }
+  const { error } = await sb.from('agendamentos').delete().eq('id', id);
+  if(error){ console.error(error); alert(error.message); return; }
+  renderAdmin();
+}
+
+function maskPhone(input){
+  var v = input.value.replace(/\D/g,'').substring(0,11);
+  if(v.length <= 2) v = v.replace(/^(\d{0,2})/,'($1');
+  else if(v.length <= 3) v = v.replace(/^(\d{2})(\d{0,1})/,'($1) $2');
+  else if(v.length <= 7) v = v.replace(/^(\d{2})(\d{1})(\d{0,4})/,'($1) $2 $3');
+  else v = v.replace(/^(\d{2})(\d{1})(\d{4})(\d{0,4})/,'($1) $2 $3-$4');
+  input.value = v;
+}
+
+window.addEventListener('load', async () => {
+  const { data: { session } } = await sb.auth.getSession();
+  if(session){ openAdmin(); }
+});
+
+</script>
+</body>
+</html>
