@@ -6,6 +6,7 @@
 <title>Studio Victoria — Design de Sobrancelhas</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
@@ -150,15 +151,46 @@
         <input class="booking-input" type="tel" id="clientPhone" placeholder="(00) 0 0000-0000" oninput="maskPhone(this)">
       </div>
     </div>
+
+    <!-- SERVIÇOS: agora multi-seleção -->
     <div class="booking-step reveal reveal-delay-1">
-      <div class="step-label"><div class="step-num">2</div> Serviço</div>
-      <select class="booking-select" id="clientService">
-        <option value="">Selecione o serviço...</option>
-        <option value="Design Simples|15">Design Simples — R$ 15</option>
-        <option value="Design com Henna|25">Design com Henna — R$ 25</option>
-        <option value="Limpeza de Buço|8">Limpeza de Buço — R$ 8</option>
-      </select>
+      <div class="step-label"><div class="step-num">2</div> Serviço(s)</div>
+      <div class="service-options" id="serviceOptions">
+
+        <label class="service-option" onclick="toggleService(this)">
+          <input type="checkbox" value="Design Simples|15">
+          <div class="service-check">✦</div>
+          <div class="service-option-info">
+            <div class="service-option-name">Design Simples</div>
+            <div class="service-option-price">R$ 15</div>
+          </div>
+        </label>
+
+        <label class="service-option" onclick="toggleService(this)">
+          <input type="checkbox" value="Design com Henna|25">
+          <div class="service-check">✦</div>
+          <div class="service-option-info">
+            <div class="service-option-name">Design com Henna</div>
+            <div class="service-option-price">R$ 25</div>
+          </div>
+        </label>
+
+        <label class="service-option" onclick="toggleService(this)">
+          <input type="checkbox" value="Limpeza de Buço|8">
+          <div class="service-check">✦</div>
+          <div class="service-option-info">
+            <div class="service-option-name">Limpeza de Buço</div>
+            <div class="service-option-price">R$ 8</div>
+          </div>
+        </label>
+
+      </div>
+      <div class="service-total hidden" id="serviceTotal">
+        <span>Total</span>
+        <span class="service-total-value" id="serviceTotalValue">R$ 0</span>
+      </div>
     </div>
+
     <div class="booking-step reveal reveal-delay-2">
       <div class="step-label"><div class="step-num">3</div> Data</div>
       <input class="booking-input" type="date" id="clientDate" onchange="loadTimes()">
@@ -343,6 +375,46 @@ function closeMenu(){
   inp.min = now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
 })();
 
+/* ── MULTI-SERVICE TOGGLE ── */
+function toggleService(label) {
+  // Prevent double-firing from label+checkbox
+  event.preventDefault();
+  var checkbox = label.querySelector('input[type="checkbox"]');
+  checkbox.checked = !checkbox.checked;
+  label.classList.toggle('selected', checkbox.checked);
+  updateTotal();
+}
+
+function updateTotal() {
+  var labels = document.querySelectorAll('.service-option');
+  var total = 0;
+  labels.forEach(function(label) {
+    var cb = label.querySelector('input[type="checkbox"]');
+    if (cb.checked) {
+      var price = Number(cb.value.split('|')[1]);
+      total += price;
+    }
+  });
+  var totalEl = document.getElementById('serviceTotal');
+  if (total > 0) {
+    totalEl.classList.remove('hidden');
+    document.getElementById('serviceTotalValue').textContent = 'R$ ' + total;
+  } else {
+    totalEl.classList.add('hidden');
+  }
+}
+
+function getSelectedServices() {
+  var result = [];
+  document.querySelectorAll('.service-option input[type="checkbox"]').forEach(function(cb) {
+    if (cb.checked) {
+      var parts = cb.value.split('|');
+      result.push({ name: parts[0], price: Number(parts[1]) });
+    }
+  });
+  return result;
+}
+
 /* ── SLOTS ── */
 var SLOTS_WEEKDAY = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30'];
 var SLOTS_SUNDAY  = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30'];
@@ -376,7 +448,6 @@ async function loadTimes() {
     return;
   }
 
-  // CORREÇÃO: pega apenas HH:MM para compatibilidade com formato time do PostgreSQL (HH:MM:SS)
   var booked = data.map(b => b.horario.substring(0, 5));
 
   var now = new Date();
@@ -414,24 +485,29 @@ async function loadTimes() {
 }
 
 async function submitBooking(){
-  var name=document.getElementById('clientName').value.trim();
-  var phone=document.getElementById('clientPhone').value.trim();
-  var service=document.getElementById('clientService').value;
-  var date=document.getElementById('clientDate').value;
-  var timeSel=document.querySelector('.time-btn.selected');
-  if(!name){ alert('Por favor, informe seu nome.'); return; }
-  if(!phone){ alert('Por favor, informe seu telefone.'); return; }
-  if(!service){ alert('Por favor, selecione o serviço.'); return; }
-  if(!date){ alert('Por favor, selecione a data.'); return; }
-  if(!timeSel){ alert('Por favor, selecione um horário.'); return; }
-  var p=service.split('|'), svcName=p[0], price=Number(p[1]);
+  var name    = document.getElementById('clientName').value.trim();
+  var phone   = document.getElementById('clientPhone').value.trim();
+  var date    = document.getElementById('clientDate').value;
+  var timeSel = document.querySelector('.time-btn.selected');
+  var services = getSelectedServices();
+
+  if(!name)     { alert('Por favor, informe seu nome.'); return; }
+  if(!phone)    { alert('Por favor, informe seu telefone.'); return; }
+  if(services.length === 0) { alert('Por favor, selecione pelo menos um serviço.'); return; }
+  if(!date)     { alert('Por favor, selecione a data.'); return; }
+  if(!timeSel)  { alert('Por favor, selecione um horário.'); return; }
+
+  // Build combined values
+  var svcNames = services.map(function(s){ return s.name; }).join(' + ');
+  var totalPrice = services.reduce(function(acc, s){ return acc + s.price; }, 0);
+
   const { error } = await sb
     .from('agendamentos')
     .insert([{
       nome: name,
       telefone: phone,
-      servico: svcName,
-      preco: price,
+      servico: svcNames,
+      preco: totalPrice,
       data_agendamento: date,
       horario: timeSel.dataset.time
     }]);
@@ -441,16 +517,28 @@ async function submitBooking(){
     alert("Esse horário já foi reservado. Escolha outro horário.");
     return;
   }
+
   await loadTimes();
 
-  timeSel.classList.remove('selected'); timeSel.classList.add('blocked'); timeSel.onclick=null;
-  var dp=date.split('-');
-  document.getElementById('confirmText').innerHTML=
-    'Olá, <strong>'+name+'</strong>!<br><br>'+
-    'Seu agendamento foi confirmado para<br>'+
-    '<strong>'+dp[2]+'/'+dp[1]+'/'+dp[0]+'</strong> às <strong>'+timeSel.dataset.time+'</strong>.<br><br>'+
-    'Serviço: <strong>'+svcName+'</strong><br><br>'+
+  timeSel.classList.remove('selected');
+  timeSel.classList.add('blocked');
+  timeSel.onclick = null;
+
+  var dp = date.split('-');
+
+  // Build service list for confirmation
+  var svcList = services.map(function(s){ return s.name + ' — R$ ' + s.price; }).join('<br>');
+  if(services.length > 1) {
+    svcList += '<br><strong>Total: R$ ' + totalPrice + '</strong>';
+  }
+
+  document.getElementById('confirmText').innerHTML =
+    'Olá, <strong>' + name + '</strong>!<br><br>' +
+    'Seu agendamento foi confirmado para<br>' +
+    '<strong>' + dp[2] + '/' + dp[1] + '/' + dp[0] + '</strong> às <strong>' + timeSel.dataset.time + '</strong>.<br><br>' +
+    'Serviço(s):<br>' + svcList + '<br><br>' +
     'Aguardamos você no Studio Victoria! ✦';
+
   document.getElementById('confirmModal').classList.add('active');
 }
 
@@ -458,9 +546,16 @@ function closeModal(){
   document.getElementById('confirmModal').classList.remove('active');
   document.getElementById('clientName').value='';
   document.getElementById('clientPhone').value='';
-  document.getElementById('clientService').value='';
   document.getElementById('clientDate').value='';
   document.getElementById('timesStep').style.display='none';
+
+  // Reset service checkboxes
+  document.querySelectorAll('.service-option').forEach(function(label){
+    label.classList.remove('selected');
+    label.querySelector('input[type="checkbox"]').checked = false;
+  });
+  document.getElementById('serviceTotal').classList.add('hidden');
+
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
